@@ -46,11 +46,29 @@ session.add(item2)
 session.commit()
 
 item3 = item(name="FIFA 2018", id=3, description="Best Soccer game ever El Tornado", price="$29.99", category_id=2, user_id=1)
+session.add(item3)
+session.commit()
+
 item4 = item(name="Madden 2018", id=4, description="Is there any other football game", price="$49.99", category_id=2, user_id=1)
+session.add(item4)
+session.commit()
+
 item5 = item(name="Final Fantasy VII", id=5, description="McCloud sword-style art", price="$49.99", category_id=3, user_id=1)
+session.add(item5)
+session.commit()
+
 item6 = item(name="Call of Duty WWII", id=6, description="Call of Duty WWII is the best since first COD", price="$89.99", category_id=4, user_id=1)
+session.add(item6)
+session.commit()
+
 item7 = item(name="Destiny 2", id=7, description="This franchise gives halo a run for its money", price="$49.99", category_id=4, user_id=1)
+session.add(item7)
+session.commit()
+
 item8 = item(name="Chess", id=8, description="This is a classic Strategy game for the ages", price="$19.99", category_id=5, user_id=1)
+session.add(item8)
+session.commit()
+
 
 #add 
 
