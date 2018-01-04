@@ -37,7 +37,13 @@ session.add(category5)
 session.commit()
 
 #add items
-item1 = item(name="", id=1, description="This is the best action game of the year watch out Witch Hunter", price="$49.99", category_id=1, user_id=1)
-
+item1 = item(name="Naruto Shadows of Leaf", id=1, description="This is the best action game of the year watch out Witch Hunter", price="$49.99", category_id=1, user_id=1)
+item2 = item(name="Hero Marksman", id=2, description="This is better then star wars battlefront", price="$39.99", category_id=1, user_id=1)
+item3 = item(name="FIFA 2018", id=3, description="Best Soccer game ever El Tornado", price="$29.99", category_id=2, user_id=1)
+item4 = item(name="Madden 2018", id=4, description="Is there any other football game", price="$49.99", category_id=2, user_id=1)
+item5 = item(name="Final Fantasy VII", id=5, description="McCloud sword-style art", price="$49.99", category_id=3, user_id=1)
+item6 = item(name="Call of Duty WWII", id=6, description="Call of Duty WWII is the best since first COD", price="$89.99", category_id=4, user_id=1)
+item7 = item(name="Destiny 2", id=7, description="This franchise gives halo a run for its money", price="$49.99", category_id=4, user_id=1)
+item8 = item(name="Chess", id=8, description="This is a classic Strategy game for the ages", price="$19.99", category_id=5, user_id=1)
 
 print "added items to catalog"
