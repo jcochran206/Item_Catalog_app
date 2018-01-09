@@ -1,7 +1,7 @@
 from flask import Flask
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from database_setup import User, Category, Item
+from database_setup import Base, User, Category, Item
 app = Flask(__name__)
 
 engine = create_engine('sqlite:///categoryitems.db')
@@ -28,17 +28,17 @@ def showCategories():
 	return "get out put here to render"
 
 #NEW CATEGORY
-@app.route('/categories/new/' methods=['GET','POST'])
+@app.route('/categories/new/', methods=['GET', 'POST'])
 def newCategory():
 	return 'New item here'
 
 #Edit Category here
 @app.route('/categories/<int:category_id>/edit/', methods=['GET','POST'])
-def editCategory(category_id)
+def editCategory(category_id):
 	return 'edit materials go here'
 
 
 
 if __name__ == '__main__':
 	app.debug = True
-	app.run(localhost = '0.0.0.0', port=8000)
+	app.run(host = '0.0.0.0', port=8000)
