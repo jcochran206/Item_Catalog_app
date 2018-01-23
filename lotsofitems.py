@@ -1,7 +1,7 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
  
-from database_setup import User, Category, Item
+from database_setup import Base, User, Category, Item
 
 engine = create_engine('sqlite:///categoryitems.db')
 
@@ -12,8 +12,8 @@ DBSession = sessionmaker(bind=engine)
 session = DBSession()
 
 #add user1
-default_user = user(id=1, name="User1", email="default@email.com")
-session.add(default_user)
+#default_user = user(id=1, name="User1", email="default@email.com")
+#session.add(default_user)
 
 #add categories
 category1 = Category(id=1, name="Action")
