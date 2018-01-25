@@ -1,10 +1,10 @@
-from flask import Flask
+from flask import Flask, jsonify
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from database_setup import Base, User, Category, Item
+from database_setupVG import GameCategory, Base, GameItem
 app = Flask(__name__)
 
-engine = create_engine('sqlite:///categoryitems.db')
+engine = create_engine('sqlite:///videogames.db')
 Base.metadata.bind = engine
 
 DBSession = sessionmaker(bind=engine)
@@ -18,13 +18,13 @@ def home():
 @app.route('/Category/JSON')
 def categoryJSON():
 	#return all categories
-	categories = session.query(Category).all()
+	categories = session.query(GameCategory).all()
 	return jsonify(categories=[i.serialize for i in categories])
 
 #show all categories
 @app.route('/categories/')
 def showCategories():
-	categories = session.query(Category).order_by(asc(Category.name))
+	categories = session.query(category).order_by(asc(category.name))
 	return "get out put here to render"
 
 #NEW CATEGORY
