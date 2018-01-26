@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, render_template, request, redirect,jsonify, url_for, flash
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from database_setupVG import GameCategory, Base, GameItem
@@ -24,8 +24,15 @@ def categoryJSON():
 #show all categories
 @app.route('/categories/')
 def showCategories():
-	categories = session.query(category).order_by(asc(category.name))
-	return "get out put here to render"
+	categories = session.query(GameCategory).order_by(GameCategory.name)
+	items = session.query(GameItem).all()
+	output = ''
+	for i in items:
+		output += i.name
+	 	output += '</br>'
+	 	output += i.price
+	return output
+	#return render_template('main.html', game_id = GameCategory.id)
 
 #NEW CATEGORY
 @app.route('/categories/new/', methods=['GET', 'POST'])
@@ -34,7 +41,7 @@ def newCategory():
 
 #Edit Category here
 @app.route('/categories/<int:category_id>/edit/', methods=['GET','POST'])
-def editCategory(category_id):
+def editCategory(game_id):
 	return 'edit materials go here'
 
 
