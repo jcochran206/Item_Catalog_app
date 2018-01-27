@@ -22,15 +22,18 @@ def categoryJSON():
 	return jsonify(categories=[i.serialize for i in categories])
 
 #show all categories
-@app.route('/categories/')
+@app.route('/category/')
 def showCategories():
-	categories = session.query(GameCategory).order_by(GameCategory.name)
-	items = session.query(GameItem).all()
+	categories = session.query(GameCategory).first()
+	items = session.query(GameItem).filter_by(game_id=categories.id)
 	output = ''
 	for i in items:
 		output += i.name
 	 	output += '</br>'
 	 	output += i.price
+	 	output += '</br>'
+	 	output += i.description
+	 	output += '</br>'
 	return output
 	#return render_template('main.html', game_id = GameCategory.id)
 
@@ -40,7 +43,7 @@ def newCategory():
 	return 'New item here'
 
 #Edit Category here
-@app.route('/categories/<int:category_id>/edit/', methods=['GET','POST'])
+@app.route('/categories/<int:game_id>/edit/', methods=['GET','POST'])
 def editCategory(game_id):
 	return 'edit materials go here'
 

@@ -28,8 +28,8 @@ class GameItem(Base):
     description = Column(String(250))
     price = Column(String(8))
     systemType = Column(String(250))
-    gameCategory_id = Column(Integer,ForeignKey('category.id'))
-    relation = relationship(GameCategory)
+    game_id = Column(Integer,ForeignKey('category.id'))
+    category = relationship(GameCategory)
 
 
     @property

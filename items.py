@@ -25,20 +25,20 @@ session.add(category1)
 session.commit()
 
 gameItem1 = GameItem(name="Madden 2018", description="Go Hawks",
-                     price="$35.50", systemType="PS4", relation=category1)
+                     price="$35.50", systemType="PS4", category=category1)
 
 session.add(gameItem1)
 session.commit() 
 
 gameItem2 = GameItem(name="Tecmo bowl classic", description="8bit classic mania",
-                     price="$25.50", systemType="PS4", relation=category1)
+                     price="$25.50", systemType="PS4", category=category1)
 
 session.add(gameItem2)
 session.commit()
 
 
 gameItem3 = GameItem(name="FIFA 2018", description="Ronaldo El Tornado",
-                     price="$20.99", systemType="xbox", relation=category1)
+                     price="$20.99", systemType="xbox", category=category1)
 
 session.add(gameItem3)
 session.commit()
@@ -49,16 +49,16 @@ category2 = GameCategory(name="Action")
 session.add(category2)
 session.commit()
 
-gameItem1 = GameItem(name="UFC3", description="Connor the Hammer",
-                     price="$45.50", systemType="PS4", relation=category2)
+gameItem4 = GameItem(name="UFC3", description="Connor the Hammer",
+                     price="$45.50", systemType="PS4", category=category2)
 
-session.add(gameItem1)
+session.add(gameItem4)
 session.commit() 
 
-gameItem2 = GameItem(name="Call of Duty WW2", description="Saving Private Cochran",
-                     price="$55.50", systemType="PS4", relation=category2)
+gameItem5 = GameItem(name="Call of Duty WW2", description="Saving Private Cochran",
+                     price="$55.50", systemType="PS4", category=category2)
 
-session.add(gameItem2)
+session.add(gameItem5)
 session.commit()
 
 #Category 3 
@@ -67,16 +67,16 @@ category3 = GameCategory(name="RPG")
 session.add(category3)
 session.commit()
 
-gameItem1 = GameItem(name="MonsterHunter", description="Whole alot of flying dragon prepare of war",
-                     price="$45.50", systemType="PS4", relation=category3)
+gameItem6 = GameItem(name="MonsterHunter", description="Whole alot of flying dragon prepare of war",
+                     price="$45.50", systemType="PS4", category=category3)
 
-session.add(gameItem1)
+session.add(gameItem6)
 session.commit()
 
-gameItem1 = GameItem(name="Destiny 2", description="where is my glimmer boys",
-                     price="$45.50", systemType="xbox", relation=category3)
+gameItem7 = GameItem(name="Destiny 2", description="where is my glimmer boys",
+                     price="$45.50", systemType="xbox", category=category3)
 
-session.add(gameItem2)
+session.add(gameItem7)
 session.commit()
 
 print "added videogames items!"
