@@ -44,9 +44,15 @@ def categoryGame(game_id):
 	items = session.query(GameItem).filter_by(game_id=categories.id)
 	return render_template('main.html', categories=categories, items=items)
 #NEW CATEGORY
-@app.route('/categories/new/', methods=['GET', 'POST'])
-def newCategory():
-	return 'New item here'
+@app.route('/category/<int:game_id>/new/', methods=['GET', 'POST'])
+def newGameItem(game_id):
+	if request.method == 'POST':
+		newItem = GameItem(name = request.form['name'],game_id=game_id)
+		session.add(newItem)
+		session.commit()
+		return redirect(url_for('showCategories', game_id=game_id))
+	else:
+		return render_template('newgameitem.html', game_id=game_id)
 
 #Edit Category here
 @app.route('/category/<int:game_id>/edit/', methods=['GET','POST'])
