@@ -18,7 +18,7 @@ def home():
 @app.route('/Category/JSON')
 def categoryJSON():
 	#return all categories
-	categories = session.query(GameCategory).all()
+	categories = session.query(GameItem).all()
 	return jsonify(categories=[i.serialize for i in categories])
 
 #show all categories
@@ -35,17 +35,28 @@ def showCategories():
 	 	output += i.description
 	 	output += '</br>'
 	return output
-	#return render_template('main.html', game_id = GameCategory.id)
+	#return render_template('main.html', game_id = categories.id)
+# Game Menu Item
 
+@app.route('/category/<int:game_id>/')
+def categoryGame(game_id):
+	categories = session.query(GameCategory).filter_by(id=game_id).one()
+	items = session.query(GameItem).filter_by(game_id=categories.id)
+	return render_template('main.html', categories=categories, items=items)
 #NEW CATEGORY
 @app.route('/categories/new/', methods=['GET', 'POST'])
 def newCategory():
 	return 'New item here'
 
 #Edit Category here
-@app.route('/categories/<int:game_id>/edit/', methods=['GET','POST'])
+@app.route('/category/<int:game_id>/edit/', methods=['GET','POST'])
 def editCategory(game_id):
 	return 'edit materials go here'
+
+#delete Category here
+@app.route('/category/<int:game_id>/delete/', methods=['GET','POST'])
+def deleteCategory(game_id):
+	return 'delete materials go here'
 
 
 
