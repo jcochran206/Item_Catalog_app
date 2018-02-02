@@ -27,9 +27,10 @@ class GameItem(Base):
     id = Column(Integer, primary_key = True)
     description = Column(String(250))
     price = Column(String(8))
-    systemType = Column(String(250))
-    game_id = Column(Integer,ForeignKey('category.id'))
-    category = relationship(GameCategory)
+    image = Column(String(250))
+    systemType = Column(String(8))
+    category_id = Column(Integer,ForeignKey('category.id')) #foregin key item from outer table
+    category = relationship(GameCategory) #table use to relate items
 
 
     @property
@@ -40,6 +41,7 @@ class GameItem(Base):
            'description'         : self.description,
            'id'         : self.id,
            'price'         : self.price,
+           'image'      : self.image,
            'systemType'         : self.systemType,
        }
 
