@@ -35,44 +35,49 @@ def categoryGamesJSON(category_id, gameitem_id):
 	game_item = session.query(GameItem).filter_by(id=gameitem_id).one()
 	return jsonify(game_item = game_item.serialize)
 
-
+#routes for pages will go here
 #show all categories
-@app.route('/category/')
+@app.route('/category')
 def showCategories():
 	categories = session.query(GameCategory).first()
 	items = session.query(GameItem).filter_by(category_id=categories.id)
-	# output = ''
-	# for i in items:
-	# 	output += i.name
-	#  	output += '</br>'
-	#  	output += i.price
-	#  	output += '</br>'
-	#  	output += i.description
-	#  	output += '</br>'
-	# return output
-	#return render_template('main.html', category_id = categories.id)
+	output = ''
+	for i in items:
+		output += i.name
+	 	output += '</br>'
+	 	output += i.price
+	 	output += '</br>'
+	 	output += i.description
+	 	output += '</br>'
+	 	output += i.image
+	 	output += '<br>'
+	 	output += '<br>'
+	 	return output
+	#return render_template('main.html', category_id = categories.id, items=items)
 # Game Menu Item
 
 @app.route('/category/<int:category_id>/')
 def categoryGame(category_id):
 	categories = session.query(GameCategory).filter_by(id=category_id).one()
 	items = session.query(GameItem).filter_by(category_id=categories.id)
-	return render_template('main.html', categories=categories, items=items)
+	return render_template('games.html', categories=categories, items=items)
 #NEW CATEGORY
 @app.route('/category/<int:category_id>/new/', methods=['GET', 'POST'])
 def newGameItem(category_id):
 	if request.method == 'POST':
-		newItem = GameItem(name = request.form['name'],category_id=category_id)
+		newItem = GameItem(name = request.form['name'], description=request.form['description'], 
+			price=request.form['price'], systemType=request.form['systemType'], category_id=categories.id)
 		session.add(newItem)
 		session.commit()
 		return redirect(url_for('showCategories', category_id=category_id))
 	else:
 		return render_template('newgameitem.html', category_id=category_id)
 
-#Edit Category here
-@app.route('/category/<int:category_id>/<int:game_item_id>/edit/', methods=['GET','POST'])
-def editCategory(category_id, game_item_id):
-	editedItem = session.query(GameItem).filter_by(id=game_item_id).one()
+#Edit Game item here
+@app.route('/category/<int:category_id>/<int:gameitem_id>/edit/', methods=['GET','POST'])
+def editCategory(category_id, gameitem_id):
+	#return "edit here"
+	editedItem = session.query(GameItem).filter_by(id=gameitem_id).one()
 	if request.method == 'POST':
 		if request.form['name']:
 			editedItem.name = request.form['name']
@@ -80,13 +85,12 @@ def editCategory(category_id, game_item_id):
 		session.commit()
 		return redirect(url_for('showCategories', category_id=category_id))
 	else:
-		return render_template('editgameitem.html', category_id=category_id, game_item_id=game_item_id, item=editedItem)
+		return render_template('editgameitem.html', category_id=category_id, gameitem_id=gameitem_id, item=editedItem)
 
-	return 'edit materials go here'
 
 #delete Category here
-@app.route('/category/<int:category_id>/delete/', methods=['GET','POST'])
-def deleteCategory(category_id):
+@app.route('/category/<int:category_id>/<int:gameitem_id>/delete/', methods=['GET','POST'])
+def deleteCategory(category_id, gameitem_id):
 	return 'delete materials go here'
 
 

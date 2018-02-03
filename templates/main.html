@@ -2,7 +2,12 @@
 
 <body>
 
-<h1>{{categories.name}}</h1>
+<h1>{{category_id.name}}</h1>
+
+<div>
+	<a href="{{url_for('newGameItem', category_id = category_id)}}">Create New Item </a>
+
+</div>
 
 
 {% for i in items  %}
@@ -16,13 +21,15 @@
 <p> {{i.price}} </p>
 </br>
 
-<a href='{{url_for('editCategory', game_id = categories.id, items=items) }}'>Edit</a>
+<a href='{{url_for('editCategory', category_id = categories.id, gameitem_id = gameitem_id) }}'>Edit</a>
 </br>
-<a href = '{{url_for('deleteCategory', game_id = categories.id, items = items) }}'>Delete</a>
+<a href = '{{url_for('deleteCategory', category_id = category_id, gameitem_id = gameitem_id) }}'>Delete</a>
 </div>
 
 
 {% endfor %}
+
+
 </body>
 
 </html>

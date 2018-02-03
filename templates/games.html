@@ -1,0 +1,35 @@
+<html>
+
+<body>
+
+<h1>{{categories.name}}</h1>
+
+
+{% for i in items %}
+
+<div>
+
+<p>{{i.name}}</p>
+
+<p>{{i.description}}</p>
+
+<p> {{i.price}} </p>
+
+
+<img src="{{i.image}}">
+
+</div>
+
+<div>
+<a href='{{url_for('editCategory', category_id = categories.id, gameitem_id = i.id) }}'>Edit</a>
+
+</br>
+<a href = '{{url_for('deleteCategory', category_id = categories.id, gameitem_id = i.id ) }}'>Delete</a>
+
+</div>
+
+
+{% endfor %}
+</body>
+
+</html>

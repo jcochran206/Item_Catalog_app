@@ -6,12 +6,14 @@
 <body>
 <h1>New Game Item</h1>
 
-<form action='{{url_for('newGameItem', game_id = game_id)}}' method="POST">
+<form action='{{url_for("newGameItem", category_id = category_id)}}' method="POST">
 
 <p>Name: </p>
+
 <input type="text" size='30' name="name">
+
 <input type='submit' value='Create'>
 </form>
-
+<img src="/static/images/gameitem1.jpg">
 </body>
 </html>
