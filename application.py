@@ -91,7 +91,13 @@ def editCategory(category_id, gameitem_id):
 #delete Category here
 @app.route('/category/<int:category_id>/<int:gameitem_id>/delete/', methods=['GET','POST'])
 def deleteCategory(category_id, gameitem_id):
-	return 'delete materials go here'
+		itemToDelete = session.query(GameItem).filter_by(id=gameitem_id).one()
+		if request.method == 'POST':
+			session.delete(itemToDelete)
+			session.commit()
+			return redirect(url_for('showCategories', category_id=category_id))
+		else:
+			return render_template('deleteGameitem.html', item=itemToDelete)
 
 
 
