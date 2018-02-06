@@ -1,20 +1,28 @@
 <!DOCTYPE html>
 
 <html>
-
+<head>
+	<title>Delete Page</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+</head>
 <body>
-<h1> Are you sure you want to delete {{item.name}}? </h1>
+<div class="continer-fluid">
+<h1 class="display-5"> Are you sure you want to delete {{item.name}}? </h1>
 
-<form action="{{ url_for('deleteCategory', category_id=item.category_id, gameitem_id=item.id)}}" method = 'post'>
+<form class="form-inline" action="{{ url_for('deleteCategory', category_id=item.category_id, gameitem_id=item.id)}}" method = 'post'>
 
-<input type='submit', value = 'Delete'>
-
-
-
-
+<!--<input type='submit', value = 'Delete'>-->
+<div class="btn-group" role="group" aria-label="Basic example">
+<button type="submit" class="btn btn-primary" value="Delete">Submit</button>
+<a href = "{{ url_for('showCategories', category_id = item.category_id)}}" class="btn btn-secondary"> Cancel </a>
+</div>
 </form>
+</div>
 
-<a href = "{{ url_for('showCategories', category_id = item.category_id)}}"> Cancel </a>
+<!-- JavaScript Bootstrap 4-->
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 </body>
 
 </html>
