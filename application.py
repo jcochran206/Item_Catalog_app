@@ -69,6 +69,7 @@ def newGameItem(category_id):
 			price=request.form['price'], systemType=request.form['systemType'], category_id=categories.id)
 		session.add(newItem)
 		session.commit()
+		flash("new game item!")
 		return redirect(url_for('showCategories', category_id=category_id))
 	else:
 		return render_template('newgameitem.html', category_id=category_id)
@@ -83,6 +84,7 @@ def editCategory(category_id, gameitem_id):
 			editedItem.name = request.form['name']
 		session.add(editedItem)
 		session.commit()
+		flash("edited game item was successful")
 		return redirect(url_for('showCategories', category_id=category_id))
 	else:
 		return render_template('editgameitem.html', category_id=category_id, gameitem_id=gameitem_id, item=editedItem)
@@ -95,6 +97,7 @@ def deleteCategory(category_id, gameitem_id):
 		if request.method == 'POST':
 			session.delete(itemToDelete)
 			session.commit()
+			flash("game item was deleted")
 			return redirect(url_for('showCategories', category_id=category_id))
 		else:
 			return render_template('deleteGameitem.html', item=itemToDelete)
@@ -102,5 +105,6 @@ def deleteCategory(category_id, gameitem_id):
 
 
 if __name__ == '__main__':
+	app.secret_key = 'super_secret_key'
 	app.debug = True
 	app.run(host = '0.0.0.0', port=8000)

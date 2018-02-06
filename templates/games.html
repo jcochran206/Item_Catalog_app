@@ -1,13 +1,56 @@
 <html>
+<head>
+	<title>Games Page</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+</head>
 
 <body>
 
-<h1>{{categories.name}}</h1>
+<div class="container-fluid">
+<div class="jumbotron">
+  <h1 class="display-3">Hello Video Games</h1>
+  <p class="lead">This is a simple game site.</p>
+  <hr class="my-4">
+  <p>It a place for you to get the games you desire at cheap prices.</p>
+  <p class="lead">
+    <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+  </p>
+</div>
+<br>
 
+<div class="alert alert-info">
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+ <ul>
+{% for message in messages %}
+  <li><strong>{{message}}</strong></li>
+  {% endfor %}
+</ul>
+{% endif %}
+{% endwith %}
+</div>
+<hr>
+
+<h1 class="display-3"> {{categories.name}}</h1>
+<br>
 
 {% for i in items %}
-
-<div>
+<div class="row">
+ <div class="col col-sm-6 col-md-12">	
+  <div class="card" style="width: 20rem;"> <!--Card loop-->
+	<img class="card-img-top" src="{{i.image}}" alt="{{i.name}}">
+	<div class="card-block">
+	 <h4 class="card-title">{{i.name}}</h4>
+	 <p class="card-text">{{i.description}}</p>
+	 <p class="card-text">{{i.price}}</p>
+	 <a href='{{url_for('editCategory', category_id = categories.id, gameitem_id = i.id) }}' class="btn btn-primary">Edit</a>
+	 <a href='{{url_for('deleteCategory', category_id = categories.id, gameitem_id = i.id ) }}' class="btn btn-secondary">Delete</a>
+	 </div>
+  </div>
+ </div>
+</div><!--end of card row-->
+<br>
+<!-- <div>
 
 <p>{{i.name}}</p>
 
@@ -18,18 +61,23 @@
 
 <img src="{{i.image}}">
 
-</div>
+</div> -->
 
-<div>
+<!-- <div>
 <a href='{{url_for('editCategory', category_id = categories.id, gameitem_id = i.id) }}'>Edit</a>
 
 </br>
 <a href = '{{url_for('deleteCategory', category_id = categories.id, gameitem_id = i.id ) }}'>Delete</a>
 
-</div>
+</div> -->
 
 
 {% endfor %}
+</div>
+<!-- JavaScript -->
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 </body>
 
 </html>
